@@ -1,9 +1,9 @@
+import ReflectionTopicTest.Airplane;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.Scanner;
 
 public class Main {
 
@@ -81,7 +81,7 @@ public class Main {
             }
         }*/
 
-        Scanner scanner = new Scanner(System.in);
+        /*Scanner scanner = new Scanner(System.in);
         Class classObject1 = Class.forName(scanner.next()); //ClassName1
         Class classObject2 = Class.forName(scanner.next()); //ClassName2
         String methodName = scanner.next(); //MethodName
@@ -89,7 +89,52 @@ public class Main {
         Object object1 = classObject1.newInstance();
         Object object2 = classObject2.getConstructor(String.class).newInstance("String value");
         method.invoke(object1,object2);
-        System.out.println(object1);
+        System.out.println(object1);*/
+
+
+        Class airplane = Airplane.class;
+        Method [] airplaneMethodsPublic = airplane.getMethods();
+        Method [] airplaneMethodsPrivate = airplane.getDeclaredMethods();
+
+        System.out.println("Airplane public methods");
+        for (Method method: airplaneMethodsPublic){
+            System.out.println(method);
+        }
+
+        System.out.println("\n");
+
+        System.out.println("Airplane private methods");
+        for (Method method: airplaneMethodsPrivate){
+            System.out.println(method);
+        }
+
+        System.out.println("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+
+        Field [] airplanePublicFields = airplane.getFields();
+        for (Field field: airplanePublicFields){
+            System.out.println(field);
+        }
+
+        System.out.println("\n");
+        Field [] airplanePrivateFields = airplane.getDeclaredFields();
+        for (Field field: airplanePrivateFields){
+            System.out.println(field);
+        }
+
+        System.out.println("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+
+        Annotation [] annotations = airplane.getAnnotations();
+        for (Annotation annotation: annotations){
+            System.out.println(annotation);
+        }
+
+        Object airplaneFromObject = airplane.getConstructor(String.class,int.class).newInstance("Airbus",1);
+        System.out.println(airplaneFromObject);
+
+
+
+
+
 
 
 
